@@ -35,5 +35,4 @@ Example:  {"success": true, "confidence": {  "mongoose": 0.87896, "hare": 0.0012
 * Replace the generated graph and label files in `/classify_image/inception_model/`
 * Deploy the Django project
 
-## Contribute
-I am just beginner. If you find any bugs or want to improve the project, fell free to do it uisng pull request.
+
