@@ -24,7 +24,7 @@ def load_graph():
         graph_def.ParseFromString(tf_graph.read())
         tf.import_graph_def(graph_def, name='')
     label_lines = [line.rstrip() for line in tf.gfile.GFile(TF_LABELS)]
-    softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
+    softmax_tensor = sess.graph.get_tensor_by_name('softmax:0') #your tensor name
     return sess, softmax_tensor, label_lines
 
 
@@ -67,9 +67,8 @@ def classify(request):
 # noinspection PyUnresolvedReferences
 def tf_classify(image_file, k=MAX_K):
     result = list()
-
+    image_file.seek(0)
     image_data = tf.gfile.FastGFile(image_file.name, 'rb').read()
-
     predictions = SESS.run(GRAPH_TENSOR, {'DecodeJpeg/contents:0': image_data})
     predictions = predictions[0][:len(LABELS)]
     top_k = predictions.argsort()[-k:][::-1]
